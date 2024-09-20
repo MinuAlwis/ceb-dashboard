@@ -53,7 +53,7 @@ router.post('/notifications', (req, res) => {
       console.error("Error inserting notification:", err);
       return res.status(500).json({ error: "Database error" });
     }
-    res.status(201).json({ message: "Notification sent successfully!" });
+    res.status(201).json({ message: "Notification sent successfully!!!" });
   });
 });
 
