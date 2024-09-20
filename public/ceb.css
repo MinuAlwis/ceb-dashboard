@@ -1,0 +1,387 @@
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /*flex-direction: column;*/
+}
+
+.container {
+    text-align: center;
+    /*max-width: 1200px;*/
+    width: 100%;
+    /*padding: 5px;*/
+    position: relative;
+}
+
+.applications h2,
+.services h2,
+.other-services h2 {
+    margin: 18px 0;
+    font-size: 20px;
+    color: #a9770a;
+    /*text-align: left;*/
+    /*font-family: Arial, sans-serif;*/
+}
+
+hr {
+    margin: 8px 0 18px;
+    border-top: 1px solid #000000;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    /*width: 100%;*/
+}
+
+.section-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.applications,
+.services {
+    width: 48%;
+}
+
+.app-icons,
+.service-icons{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    justify-items: center;
+}
+
+.other-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: nowrap; 
+}
+
+.icon {
+    background-color: #ffffff;
+    border: 1px solid #d2cfcf;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: box-shadow 0.3s;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    height: 120px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+.icon img {
+    /*width: 100px;
+    height: 80px;
+    border-radius: 10px;*/
+    width: 100%; 
+    height: 92px;
+    object-fit: cover; 
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.icon p {
+    margin-top: 3px;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.icon:hover {
+    box-shadow: 0px 4px 12px rgba(15, 15, 15, 0.2);
+}
+
+.background-image {
+    background-image: url("images/footer1.jpg");
+    height: 180px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.topic {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+    letter-spacing: 15px;
+}
+
+.topic h2{
+    font-size: 18px ;
+    letter-spacing: 2px;
+    color: rgb(252, 158, 36);
+
+}
+
+.other-services {
+    margin-top: 40px;
+}
+
+/* General falling container */
+.falling-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Animation keyframes */
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* Specific styles for falling emojis */
+.falling-emoji {
+    position: absolute;
+    top: -10px;
+    font-size: 25px; /* Adjust size as needed */
+    animation: fall 10s linear infinite;
+    opacity: 0.5;
+}
+
+/* Message box styles */
+.message-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 50px;
+    padding: 22px;
+    background-color: #d9d6d6;
+    color: #070707;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    font-size: 18px;
+    margin-bottom: 10px; /* Spacing between multiple messages */
+    transition: box-shadow 0.3s;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-box p {
+    margin: 0;
+    /*font-size: medium;*/
+    
+}
+
+.message-box-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.message-box:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    height: 30px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    right: 15px;
+
+}
+
+nav button {
+    background-color: #dea21f;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 6px;
+    line-height: 1.0;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+nav button:hover {
+    background-color: #f6c048;
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Login Modal Specific Styles */
+#loginModal .modal-content {
+    text-align: center;
+}
+
+#loginModal input {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#loginModal button {
+    background-color: #dea21f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#loginModal button:hover {
+    background-color: #f6c048;
+}
+
+/* Menu Modal Specific Styles */
+#menuModal .modal-content {
+    text-align: center;
+}
+
+#menuModal button {
+    background-color: #dea21f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#menuModal button:hover {
+    background-color: #f6c048;
+}
+
+/* Announcement Modal Specific Styles */
+#announcementModal .modal-content {
+    text-align: center;
+    height: 350px;
+}
+
+#announcementModal input,
+#announcementModal textarea {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#announcementModal button {
+    background-color: #dea21f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#announcementModal button:hover {
+    background-color: #f6c048;
+}
+
+/* Announcement Display */
+#announcementsDisplay {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.announcement {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width:auto;
+}
+
+.announcement .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}

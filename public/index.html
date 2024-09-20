@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEB WPS II</title>
+    <link rel="stylesheet" href="ceb.css">
+</head>
+
+<body>
+    <div class="snowfall-container"></div>
+
+    <div class="container">
+        <!--<div class="background-image">
+            <div class="topic">
+                <h1>WELCOME</h1>
+                <h2>Western Province South II</h2>
+            </div>
+        </div>-->
+        
+
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="topic">
+                <h1>WELCOME</h1>
+                <h2>Western Province South II</h2>
+            </div>
+            <button id="staffBtn">Login</button>
+        </nav>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal" >
+            <div class="modal-content">
+                <span class="close" id="closeLogin">&times;</span>
+                <h2>Login</h2>
+                <form >
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                <button id="loginBtn">Login</button>
+            </form>
+            </div>
+        </div>
+
+        <!-- Menu Modal -->
+        <div id="menuModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeMenu">&times;</span>
+                <h2>Menu</h2>
+                <button id="sendMessageBtn">Send a Message</button>
+            </div>
+        </div>
+
+        <script>
+            // Function to close a modal by ID
+            function closeModal(loginModal) {
+                document.getElementById(loginModal).style.display = 'none';
+            }
+            
+            // Function to open a modal by ID
+            function openModal(menuModal) {
+                document.getElementById(menuModal).style.display = 'block';
+            }
+            </script>
+            
+
+        <!-- Announcement Modal -->
+        <div id="announcementModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeAnnouncement">&times;</span>
+                <h2>Announcement</h2>
+                <input type="text" id="from" placeholder="From:">
+                <input type="text" id="to" placeholder="To:">
+                <textarea id="message" placeholder="Message:"></textarea>
+                <label for="display-until">Display Until:</label>
+                <input type="date" id="displayUntil"> 
+                <button id="enterAnnouncementBtn">Enter</button>
+            </div>
+        </div>
+
+        <!-- Announcements Display -->
+        <div id="announcementsDisplay"></div>
+
+
+        <section class="main-content">
+            <div class="section-wrapper">
+                <div class="applications">
+                    <h2>CEB Applications</h2>
+                    <div class="app-icons">
+                        <div class="icon">
+                            <a href="https://cebassist.ceb.lk/Account/Login?ReturnUrl=%2F" target="_blank">
+                                <img src="images/cebassist.png" alt="CEB Assist">
+                            </a>
+                            <p>CEB Assist</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://smc.ceb/SMC/security/web/Index" target="_blank">
+                                <img src="images/smc1.png" alt="SMC">
+                            </a>
+                            <p>SMC</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://sps.ceb/SPS/security/web/Index" target="_blank">
+                                <img src="images/sps2.png" alt="SPS">
+                            </a>
+                            <p>SPS</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://pivms.ceb:9090/PIVSYS/admin/index" target="_blank">
+                                <img src="images/piv3.png" alt="PIV SYSTEM">
+                            </a>
+                            <p>PIV SYSTEM</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://hrm.ceb/Login.aspx?ReturnUrl=%2fdefault.aspx" target="_blank">
+                                <img src="images/hrm.png" alt="HRM">
+                            </a>
+                            <p>HRM</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://smartceb.ceb/" target="_blank">
+                                <img src="images/smartceb.png" alt="SMART CEB">
+                            </a>
+                            <p>SmartCEB</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://pcds.ceb/PCDSAdminWeb/" target="_blank">
+                                <img src="images/pos2.png" alt="POS SYSTEM">
+                            </a>
+                            <p>POS SYSTEM</p>
+                        </div>
+                        <div class="icon">
+                            <a href="https://mms.ceb.lk/MMS/WelcomeMMS" target="_blank">
+                                <img src="images/mms1.png" alt="MMS">
+                            </a>
+                            <p>MMS</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://dir.ceb/info.php" target="_blank">
+                                <img src="images/cebweb.png" alt="ceb directory">
+                            </a>
+                            <p>CEB Directory</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://it.wps2.ceb/Phones%20Details.pdf" target="_blank">
+                                <img src="images/phone.png" alt="phone extension">
+                            </a>
+                            <p>Phone ext</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="services">
+                    <h2>CEB Services</h2>
+                    <div class="service-icons">
+                        <div class="icon">
+                            <a href="http://cebinfo.ceb/" target="_blank">
+                                <img src="images/info1.png" alt="CEB INFO">
+                            </a>
+                            <p>CEB INFO</p>
+                        </div>
+                        <div class="icon">
+                            <a href="https://cbrs.ceb.lk/CBRS/WelcomeCBRS" target="_blank">
+                                <img src="images/circuitbooking.png" alt="Circuit Booking">
+                            </a>
+                            <p>Circuit Booking</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://asd.ceb/login.php" target="_blank">
+                                <img src="images/asd3.png" alt="Automated service desk">
+                            </a>
+                            <p>ASD</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://misreport.ceb:8080/ReportSAN/" target="_blank">
+                                <img src="images/jobcardreports.png" alt="job card report">
+                            </a>
+                            <p>Job card report</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://misreport.ceb/ReportSAN/" target="_blank">
+                                <img src="images/misreports.png" alt="mis reports">
+                            </a>
+                            <p>MIS Reports</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://it.wps2.ceb/Repair%20Request.pdf" target="_blank">
+                                <img src="images/repairreq1.png" alt="repair request">
+                            </a>
+                            <p>Repair requests</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://it.wps2.ceb/hardware maintenance acknowledgement.pdf" target="_blank">
+                                <img src="images/repairreq.png" alt="repair request">
+                            </a>
+                            <p>Acknowledgement</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://inventory.wps2.ceb/glpi/" target="_blank">
+                                <img src="images/helpdesk2.png" alt="It helpdesk">
+                            </a>
+                            <p>IT HELP DESK</p>
+                        </div>
+                        <div class="icon">
+                            <a href="http://it.wps2.ceb/telephone%20password.pdf" target="_blank">
+                                <img src="images/pwrequest2.png" alt="password request">
+                            </a>
+                            <p>Password Request</p>
+                        </div>
+                        <div class="icon">
+                            <a href="" target="_blank">
+                                <img src="images/outlook2.png" alt="OutlookWEB">
+                            </a>
+                            <p>Outlook web</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="other-services">
+
+            <h2>Internet Services</h2>
+            <div class="other-icons">
+                <div class="icon">
+                    <a href="https://www.yahoo.com/" target="_blank">
+                        <img src="images/yahoo.png" alt="Yahoo">
+                    </a>
+                    <p>Yahoo</p>
+                </div>
+                <div class="icon">
+                    <a href="https://mail.google.com/" target="_blank">
+                        <img src="images/gmail.png" alt="Gmail">
+                    </a>
+                    <p>Gmail</p>
+                </div>
+                <div class="icon">
+                    <a href="https://www.google.lk/" target="_blank">
+                        <img src="images/google.png" alt="Google">
+                    </a>
+                    <p>Google</p>
+                </div>
+                <div class="icon">
+                    <a href="https://www.ceb.lk/" target="_blank">
+                        <img src="images/cebweb.png" alt="CEB web">
+                    </a>
+                    <p>CEB Web</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="ceb.js"></script>
+    <script src="login.js"></script>
+
+</body>
+
