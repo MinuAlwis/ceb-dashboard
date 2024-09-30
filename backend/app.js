@@ -22,17 +22,21 @@ app.use(session({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));  // Make sure you have 'index.html' in the 'public' folder
-});
-
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Serve static files from the 'frontend/public' directory
+app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // Routes
 app.use(authRoutes);
 app.use(notificationRoutes);
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+});
+
+app.get('/api', (req, res) => {
+    res.json({ message: 'Welcome to the API' });
+  });
 
 // Wait for DB connection before starting the server
 connectToDatabase()
