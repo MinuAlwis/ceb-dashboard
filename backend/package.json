@@ -1,18 +1,22 @@
 {
   "name": "cebwps",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.16.0" 
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "nodeman": "^1.1.2"
+    "nodeman": "^1.1.2",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,6 +26,6 @@
     "express-session": "^1.18.0",
     "hbs": "^4.2.0",
     "mysql": "^2.18.1",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.7"
   }
 }
