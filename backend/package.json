@@ -2,7 +2,7 @@
   "name": "cebwps",
   "version": "1.0.0",
   "engines": {
-    "node": "20.16.0" 
+    "node": "20.16.0"
   },
   "description": "",
   "main": "index.js",
@@ -15,8 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "nodeman": "^1.1.2",
-    "mysql": "^2.18.1"
+    "mongoose": "^8.7.0",
+    "mysql": "^2.18.1",
+    "nodeman": "^1.1.2"
   },
   "devDependencies": {
     "bcryptjs": "^2.4.3",

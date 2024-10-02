@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const db = require('../config/db'); // MySQL connection
+const User = require('../models/User');
 
 // Handle user login
 exports.loginUser = (req, res) => {
