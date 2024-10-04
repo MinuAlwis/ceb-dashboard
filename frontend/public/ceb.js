@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch notifications for the logged-in user
             fetchNotifications(username);
         } else {
-            alert('Login failed: Invalid credentials');
+            alert('Login failed: Invalid credentials!!!!');
         }
     });
 
