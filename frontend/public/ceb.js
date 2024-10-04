@@ -284,7 +284,7 @@ function openNewWindow(url) {
 }
 
 // Function to create falling emoji elements
-function createFallingEmojis(emoji, count = 100) {
+function createFallingEmojis(emoji, count = 50) {
     const body = document.body;
     const emojiContainer = document.createElement('div');
     emojiContainer.classList.add('falling-container');
@@ -296,7 +296,7 @@ function createFallingEmojis(emoji, count = 100) {
         emojiElement.textContent = emoji;
         emojiContainer.appendChild(emojiElement);
         emojiElement.style.left = Math.random() * 100 + 'vw';
-        emojiElement.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        emojiElement.style.animationDuration = (Math.random() * 5 + 5) + 's';
     }
 }
 
@@ -304,47 +304,44 @@ function createFallingEmojis(emoji, count = 100) {
 function applySeasonalEffect() {
     const now = new Date();
     const month = now.getMonth(); // January is 0, December is 11
+    const day = now.getDate();    // Day of the month
 
-    switch (month) {
-        case 0: // January - Thai Pongal
+    switch (`${month}-${day}`) {
+        case '0-14': // January 14 - Thai Pongal
             createFallingEmojis('🌾');
             break;
-        case 1: // February - Sri Lankan Independence
+        case '1-4': // February 4 - Sri Lankan Independence Day
             createFallingEmojis('🇱🇰');
             break;
-        case 2: // March - Maha Shivaratri
+        case '2-11': // March 11 - Maha Shivaratri
             createFallingEmojis('✨');
             break;
-        case 3: // April - New Year
+        case '3-14': // April 14 - New Year
             createFallingEmojis('🎇');
             break;
-        case 4: // May - Vesak
+        case '4-5': // May 5 - Vesak
             createFallingEmojis('🌼');
             break;
-        case 5: // June - Poson
+        case '5-24': // June 24 - Poson
             createFallingEmojis('🌻');
             break;
-        case 6: // July 
-            createFallingEmojis('');
-            break;
-        case 7: // August - Kandy Esala Perahera
+        case '7-25': // August 25 - Kandy Esala Perahera
             createFallingEmojis('🌼');
             break;
-        case 8: // September
-            break;
-        case 9: // October - Children's and Elders' Day
+        case '9-1': // October 1 - Children's and Elders' Day
             createFallingEmojis('👨‍👩‍👧‍👦');
             break;
-        case 10: // November - Deepavali
+        case '10-12': // November 12 - Deepavali
             createFallingEmojis('🪔');
             break;
-        case 11: // December - Christmas
+        case '11-25': // December 25 - Christmas
             createFallingEmojis('❄️ 🌲');
             break;
         default:
             break;
     }
 }
+
 
 // Function to show the message box
 function showMessage(message) {
@@ -396,7 +393,7 @@ function showSpecialDayMessages() {
     } else if (month === 7 && day === 9) { // August 1
         messages.push('Stay happy as always🥰😄👻');
     } else if (month === 8) { // October
-        if (day === 7) messages.push('Happy Children Day🥳 & Happy Elders Day🎉👨‍👩‍👧‍👦');
+        if (day === 1) messages.push('Happy Children Day🥳 & Happy Elders Day🎉👨‍👩‍👧‍👦');
         if (day === 6) messages.push('Happy Teachers Day👩🏻‍🏫👨🏻‍🏫');
     } else if (month === 10 && day === 4) { // November 4
         messages.push('Happy Deepavali🪔');
@@ -415,6 +412,29 @@ function openModal(loginModal) {
 function closeModal(menuModal) {
     document.getElementById(menuModal).style.display = 'none';
 }
+
+// Handle announcement submission
+const enterAnnouncementBtn = document.getElementById("enterAnnouncementBtn");
+enterAnnouncementBtn.addEventListener("click", function () {
+    const message = document.getElementById("message").value;  // Only message
+    const displayUntil = document.getElementById("displayUntil").value;
+
+    if (message.trim() !== "" && displayUntil) {
+        // Store the announcement in the database (API call can be made here)
+
+        // Show the announcement directly without "from" or "to"
+        alert("Announcement added successfully!");
+
+        // Close the announcement modal
+        announcementModal.style.display = "none";
+
+        // Optionally display the announcement in the message box
+        showAnnouncement(message);  // Use message only
+    } else {
+        alert("Please enter a message and a valid display until date.");
+    }
+});
+
 
 // Function to fetch notifications for a user
 async function fetchNotifications(toUser) {
@@ -436,17 +456,28 @@ async function fetchNotifications(toUser) {
 }
 
 // Function to display an announcement
-function showAnnouncement(from, to, message) {
+function showAnnouncement(message) {
     const announcementDiv = document.createElement('div');
     announcementDiv.classList.add('announcement');
     announcementDiv.innerHTML = `
-        <strong>From:</strong> ${from}<br>
-        <strong>To:</strong> ${to}<br>
         <strong>Message:</strong> ${message}
         <span class="close" onclick="this.parentElement.remove()">&times;</span>
     `;
     document.getElementById('announcementsDisplay').appendChild(announcementDiv);
 }
+
+// After successful login, display the message box directly
+function handleLogin() {
+    loginModal.style.display = "none"; // Close login modal after successful login
+    announcementModal.style.display = "block"; // Show the announcement modal
+
+    // Trigger announcement input after login (with message only)
+    const message = document.getElementById("message").value; // Only get message input
+    if (message) {
+        showAnnouncement(message);  // Display announcement for the logged-in user
+    }
+}
+
 
 // Function to schedule and display announcements
 function scheduleAnnouncement(from, to, message, displayUntil) {
