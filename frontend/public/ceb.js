@@ -431,7 +431,7 @@ enterAnnouncementBtn.addEventListener("click", function () {
         // Optionally display the announcement in the message box
         showAnnouncement(message);  // Use message only
     } else {
-        alert("Please enter a message and a valid display until date.");
+        alert("Please enter a message and a valid display until date!!!!");
     }
 });
 
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch notifications for the logged-in user
             fetchNotifications(username);
         } else {
-            alert('Login failed: Invalid credentials!!!!');
+            alert('Login failed: Invalid credentials!!');
         }
     });
 
