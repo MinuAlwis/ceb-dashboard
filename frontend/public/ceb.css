@@ -23,7 +23,7 @@ body {
 .services h2,
 .other-services h2 {
     margin: 18px 0;
-    font-size: 20px;
+    font-size: 19px;
     color: #a9770a;
     /*text-align: left;*/
     /*font-family: Arial, sans-serif;*/
@@ -97,7 +97,7 @@ hr {
 .icon p {
     margin-top: 3px;
     color: #000000;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     font-weight: bold;
 }
@@ -128,9 +128,9 @@ hr {
 }
 
 .topic h2{
-    font-size: 18px ;
+    font-size: 26px ;
     letter-spacing: 2px;
-    color: rgb(252, 158, 36);
+    color: #a9770a;
 
 }
 
@@ -358,6 +358,30 @@ nav button:hover {
 #announcementModal button:hover {
     background-color: #f6c048;
 }
+
+/* Announcement message box animation */
+.animated-announcement {
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: slide-left-to-right 10s ease forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes slide-left-to-right {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%); /* Start off-screen left */
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(0); /* Middle of the screen */
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%); /* End off-screen right */
+    }
+}
+
 
 /* Announcement Display */
 #announcementsDisplay {

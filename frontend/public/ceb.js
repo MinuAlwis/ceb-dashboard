@@ -622,7 +622,7 @@ function applySeasonalEffect() {
             createFallingEmojis('🌾');
             break;
         case '1-4': // February 4 - Sri Lankan Independence Day
-            createFallingEmojis('🇱🇰');
+            createFallingEmojis('🦁');
             break;
         case '2-11': // March 11 - Maha Shivaratri
             createFallingEmojis('✨');
@@ -690,16 +690,16 @@ function showSpecialDayMessages() {
     } else if (month === 2 && day === 11) { // March 11
         messages.push('Happy Maha Shivarathri!');
     } else if (month === 3 && day === 14) { // April 14
-        messages.push('Happy New Year🎇🙏🏻');
+        messages.push('Wish you a New Year blessed with love, happiness, and prosperity 🌞🎇🙏🏻');
     } else if (month === 4) { // May
-        if (day === 6) messages.push('Happy Vesak!');
+        if (day === 6) messages.push('Happy Vesak Day! May peace be your journey');
         if (day === 12) messages.push('Happy Mother\'s Day👩‍👧‍👦🩷');
     } else if (month === 5) { // June
-        if (day === 5) messages.push('Happy Poson!');
+        if (day === 5) messages.push('May This Poson Bring Peace and Happiness 🌕');
         if (now.getDay() === 0 && day > 14 && day < 22) messages.push('Happy Father\'s Day👨‍👧‍👦🩷');
     } else if (month === 6) { // July
         if (day === 7) messages.push('Happy Friendship Day🍻');
-        if (day === 1) messages.push('Happy Kataragama!');
+        //if (day === 1) messages.push('Happy Kataragama!');
     } else if (month === 7 && day === 9) { // August 1
         messages.push('Stay happy as always🥰😄👻');
     } else if (month === 8) { // October
@@ -708,7 +708,7 @@ function showSpecialDayMessages() {
     } else if (month === 10 && day === 4) { // November 4
         messages.push('Happy Deepavali🪔');
     } else if (month === 11 && day === 25) { // December 25
-        messages.push('Merry Christmas☃️❄️');
+        messages.push('Wishing you Christmas blessings wrapped in love, tied up with joy!☃️❄️');
     }
 
     messages.forEach(message => showMessage(message));
@@ -717,12 +717,17 @@ function showSpecialDayMessages() {
 // 6: Function to show announcements
 function showAnnouncement(message) {
     const announcementDiv = document.createElement('div');
-    announcementDiv.classList.add('announcement');
+    announcementDiv.classList.add('announcement','animated-announcement');
     announcementDiv.innerHTML = `
         <strong>Message:</strong> ${message}
         <span class="close" onclick="this.parentElement.remove()">&times;</span>
     `;
     document.getElementById('announcementsDisplay').appendChild(announcementDiv);
+
+    // Remove animation class after the animation ends
+    setTimeout(() => {
+        announcementDiv.classList.remove('animated-announcement');
+    }, 10000); // Assuming the animation duration is 3 seconds
 }
 
 // 7: Handle the login and validate credentials (only allow "admin" and "1234")
@@ -741,7 +746,7 @@ async function handleLogin(event) {
     }
 }
 
-// 8: Handle announcement submission (now message only, without 'from' or 'to')
+// 8: Handle announcement submission 
 document.getElementById('enterAnnouncementBtn').addEventListener('click', function () {
     const message = document.getElementById("message").value; // Only message input
 
