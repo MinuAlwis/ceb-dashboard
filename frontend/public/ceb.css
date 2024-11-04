@@ -51,6 +51,17 @@ hr {
     width: 48%;
 }
 
+.vl {
+    border-left: 2px solid rgb(0, 0, 0);
+    height: 295px;
+    position: absolute;
+    left: 50%;
+    margin-left: -2px;
+    top: 0;
+    margin-top: 55px;
+  }
+  
+
 .app-icons,
 .service-icons{
     display: grid;
@@ -141,43 +152,115 @@ hr {
 .other-services {
     margin-top: 40px;
 }
-/* Container for falling images */
-.falling-container {
+
+/* General container for all effects */
+.effect-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none; /* Ensure the images don't interfere with user interactions */
+    pointer-events: none; /* Allows clicks to pass through */
     overflow: hidden;
-    z-index: 9999; /* Make sure it's on top of other content */
+    z-index: 1000;
 }
 
-
-/* Animation keyframes */
-@keyframes fall {
-    0% {
-        transform: translateY(0); /* Start at the top */
-        /* opacity: 1; Fully visible */
-    }
-    90% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(110vh); /* Move past the bottom of the screen */
-        opacity: 0; /* Fade out as it goes out of view */
-    }
-}
-
-/* Styles for falling images */
+/* Falling effect (for Thai Pongal and other falling effects) */
 .falling-image {
     position: absolute;
-    top: -100px; /* Start above the screen */
-    left: 50%; /* Adjust starting horizontal position */
-    animation: fall 6s linear infinite; /* Apply the fall animation */
-    width: 50px; /* Adjust image size as needed */
-    opacity: 0.7; /* Adjust default opacity */
+    top: -10vh; /* Start above the screen */
+    width: 200px;
+    height: 200px;
+    opacity: 0.8;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh); /* Fall to the bottom of the screen */
+    }
+}
+
+/* Pop-up effect (for Sri Lankan flag on Independence Day) */
+/* Bottom-left popup */
+.popup-image.bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    animation: popupFromBottomLeft 3s ease-out;
+}
+
+/* Bottom-right popup */
+.popup-image.bottom-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    animation: popupFromBottomRight 3s ease-out;
+}
+
+/* Animation for bottom-left popup */
+@keyframes popupFromBottomLeft {
+    from {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+/* Animation for bottom-right popup */
+@keyframes popupFromBottomRight {
+    from {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+/* Sliding effect (for Vesak lantern and Kandy Esala Perahera) */
+.sliding-image {
+    position: absolute;
+    top: 10px; /* Start near the top */
+    left: -20vw; /* Start off the left side of the screen */
+    width: 300px;
+    height: 300px;
+    animation: slide 15s linear infinite;
+}
+
+@keyframes slide {
+    to {
+        transform: translateX(120vw); /* Slide across to the right side */
+    }
+}
+
+/* Additional styling for specific events */
+
+/* Sinhala and Tamil New Year - Boiling milk effect */
+.boilingmilk-image {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: auto;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
 
 /* Message box styles */
 .message-box {

@@ -62,26 +62,186 @@ function openNewWindow(url) {
 //     }
 // }
 
-// Function to create falling images instead of emojis
-function createFallingImages(imageList, count = 40) {
-    const body = document.body;
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('falling-container');
-    body.appendChild(imageContainer);
+// // Function to create falling images instead of emojis
+// function createFallingImages(imageList, count = 40) {
+//     const body = document.body;
+//     const imageContainer = document.createElement('div');
+//     imageContainer.classList.add('falling-container');
+//     body.appendChild(imageContainer);
 
-    for (let i = 0; i < count; i++) {
-        const imageElement = document.createElement('img');
-        imageElement.classList.add('falling-image');
-        imageElement.src = imageList[Math.floor(Math.random() * imageList.length)]; // Randomly select an image
-        imageContainer.appendChild(imageElement);
+//     for (let i = 0; i < count; i++) {
+//         const imageElement = document.createElement('img');
+//         imageElement.classList.add('falling-image');
+//         imageElement.src = imageList[Math.floor(Math.random() * imageList.length)]; // Randomly select an image
+//         imageContainer.appendChild(imageElement);
         
-        // Randomize initial position and animation duration
-        imageElement.style.left = Math.random() * 250 + 'vw';
-        imageElement.style.animationDuration = (Math.random() * 5 + 5) + 's'; // Random duration between 5 and 10 seconds
+//         // Randomize initial position and animation duration
+//         imageElement.style.left = Math.random() * 250 + 'vw';
+//         imageElement.style.animationDuration = (Math.random() * 5 + 5) + 's'; // Random duration between 5 and 10 seconds
+//     }
+// }
+
+// // Function to apply seasonal effects based on date
+// function applySeasonalEffect() {
+//     const now = new Date();
+//     const month = now.getMonth(); // January is 0, December is 11
+//     const day = now.getDate();    // Day of the month
+
+//     switch (`${month}-${day}`) {
+//         case '0-14': // January 14 - Thai Pongal
+//             createFallingImages(['images/thaipongal.png']);
+//             break;
+//         case '1-4': // February 4 - Sri Lankan Independence Day
+//             createFallingImages(['images/independenceday1.png']);
+//             break;
+//         case '2-11': // March 11 - Maha Shivaratri
+//             createFallingImages(['images/mahasivarathri1.png']);
+//             break;
+//         case '9-16': // April 14 - New Year
+//             createFallingImages(['images/sinhala&tamlinewyear1.png', 'images/sinhalatamilnewyear2.png']);
+//             break;
+//         case '4-5': // May 5 - Vesak
+//             createFallingImages(['images/vesak3.png']);
+//             break;
+//         case '5-24': // June 24 - Poson
+//             createFallingImages(['images/poson2.png']);
+//             break;
+//         case '7-25': // August 25 - Kandy Esala Perahera
+//             createFallingImages(['images/esalaperahara1.png']);
+//             break;
+//         case '9-1': // October 1 - Children's and Elders' Day
+//             createFallingImages(['images/children&elderday1.png', '']);
+//             break;
+//         case '10-12': // November 12 - Deepavali
+//             createFallingImages(['images/diwali1.png', '']);
+//             break;
+//         case '11-25': // December 25 - Christmas
+//             createFallingImages(['images/christmas1.png', 'images/christmas2.png']);
+//             break;
+//         default:
+//             break;
+//     }
+// }
+
+// Function to create images or videos with custom animations
+function createEffect(type, media, count = 40) {
+    const body = document.body;
+    const effectContainer = document.createElement('div');
+    effectContainer.classList.add('effect-container');
+    body.appendChild(effectContainer);
+
+    if (type === 'falling') {
+        for (let i = 0; i < count; i++) {
+            const mediaSource = media[Math.floor(Math.random() * media.length)];
+            let mediaElement;
+
+            // Check if media is an .mp4 video or an image
+            if (mediaSource.endsWith('.mp4')) {
+                mediaElement = document.createElement('video');
+                mediaElement.classList.add('falling-video');
+                mediaElement.src = mediaSource;
+                mediaElement.autoplay = true;
+                mediaElement.loop = true;
+                mediaElement.muted = true; // Mute video for ambient effect
+            } else {
+                mediaElement = document.createElement('img');
+                mediaElement.classList.add('falling-image');
+                mediaElement.src = mediaSource;
+            }
+
+            effectContainer.appendChild(mediaElement);
+            mediaElement.style.left = Math.random() * 250 + 'vw';
+            mediaElement.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        }
+    } else if (type === 'side') {
+        const mediaElement = media[0].endsWith('.mp4') ? document.createElement('video') : document.createElement('img');
+        mediaElement.classList.add('side-image');
+        mediaElement.src = media[0];
+        if (media[0].endsWith('.mp4')) {
+            mediaElement.autoplay = true;
+            mediaElement.loop = true;
+            mediaElement.muted = true;
+        }
+        effectContainer.appendChild(mediaElement);
+    } else if (type === 'sliding') {
+        const mediaElement = media[0].endsWith('.mp4') ? document.createElement('video') : document.createElement('img');
+        mediaElement.classList.add('sliding-image');
+        mediaElement.src = media[0];
+        if (media[0].endsWith('.mp4')) {
+            mediaElement.autoplay = true;
+            mediaElement.loop = true;
+            mediaElement.muted = true;
+        }
+        effectContainer.appendChild(mediaElement);
+    } else if (type === 'running') {
+        const mediaElement = media[0].endsWith('.mp4') ? document.createElement('video') : document.createElement('img');
+        mediaElement.classList.add('running-image');
+        mediaElement.src = media[0];
+        if (media[0].endsWith('.mp4')) {
+            mediaElement.autoplay = true;
+            mediaElement.loop = true;
+            mediaElement.muted = true;
+        }
+        effectContainer.appendChild(mediaElement);
+    } else if (type === 'play') {
+        for (let i = 0; i < count; i++) {
+            const mediaSource = media[Math.floor(Math.random() * media.length)];
+            const mediaElement = document.createElement('img');
+            mediaElement.classList.add('playing-image');
+            mediaElement.src = mediaSource;
+            effectContainer.appendChild(mediaElement);
+        }
+    } else if(type === 'popup') {
+        const imageElement = document.createElement('img');
+        imageElement.classList.add('popup-gif'); // Specific class for pop-up effect
+        imageElement.src = sources[0];
+        effectContainer.appendChild(imageElement);
     }
 }
 
-// Function to apply seasonal effects based on date
+// Function to create images with custom animations
+function createEffect(type, media, width = '5px', height = '5px', count = 1) {
+    const body = document.body;
+    const effectContainer = document.createElement('div');
+    effectContainer.classList.add('effect-container');
+    body.appendChild(effectContainer);
+
+    if (type === 'falling') {
+        for (let i = 0; i < count; i++) {
+            const mediaSource = media[Math.floor(Math.random() * media.length)];
+            const mediaElement = document.createElement('img');
+            mediaElement.classList.add('falling-image');
+            mediaElement.src = mediaSource;
+
+            effectContainer.appendChild(mediaElement);
+            mediaElement.style.left = Math.random() * 60 + 'vw';
+            mediaElement.style.animationDuration = (Math.random() * 8 + 8) + 's';
+        }
+    } else if (type === 'popup-left' || type === 'popup-right') {
+        const imageElement = document.createElement('img');
+        imageElement.classList.add('popup-image');
+
+        // Apply specific class for left or right positioning
+        if (type === 'popup-left') {
+            imageElement.classList.add('bottom-left');
+        } else if (type === 'popup-right') {
+            imageElement.classList.add('bottom-right');
+        }
+
+        imageElement.src = media[0];
+        imageElement.style.width = width;
+        imageElement.style.height = height;
+        effectContainer.appendChild(imageElement);
+
+    } else if (type === 'sliding') {
+        const imageElement = document.createElement('img');
+        imageElement.classList.add('sliding-image');
+        imageElement.src = media[0];
+        effectContainer.appendChild(imageElement);
+    }
+}
+
+// Function to apply seasonal effects based on specific dates
 function applySeasonalEffect() {
     const now = new Date();
     const month = now.getMonth(); // January is 0, December is 11
@@ -89,39 +249,32 @@ function applySeasonalEffect() {
 
     switch (`${month}-${day}`) {
         case '0-14': // January 14 - Thai Pongal
-            createFallingImages(['images/thaipongal.png']);
+            createEffect('popup-left', ['images/thaipongal.png'],'200px', '250px');
             break;
-        case '1-4': // February 4 - Sri Lankan Independence Day
-            createFallingImages(['images/independenceday1.png']);
+        case '1-4': // February 4 - Independence Day with Sri Lankan flag pop-up
+            createEffect('popup', ['images/srilankaflag.gif']);
             break;
-        case '2-11': // March 11 - Maha Shivaratri
-            createFallingImages(['images/mahasivarathri1.png']);
+        case '3-14': // April 14 - Sinhala and Tamil New Year
+            createEffect('falling', ['images/fireworks2.gif'], 6);
             break;
-        case '3-14': // April 14 - New Year
-            createFallingImages(['images/sinhala&tamlinewyear1.png']);
-            break;
-        case '4-5': // May 5 - Vesak
-            createFallingImages(['images/vesak3.png']);
+        case '4-5': // May 5 - Vesak, sliding vesak lantern
+            createEffect('sliding', ['images/vesak3.png']);
             break;
         case '5-24': // June 24 - Poson
-            createFallingImages(['images/poson2.png']);
+            createEffect('falling', ['images/vesak3.png'], 20);
             break;
-        case '7-25': // August 25 - Kandy Esala Perahera
-            createFallingImages(['images/esalaperahara1.png']);
+        case '7-25': // August 25 - Kandy Esala Perahera, sliding perahara
+            createEffect('sliding', ['images/perahara.png']);
             break;
-        case '9-1': // October 1 - Children's and Elders' Day
-            createFallingImages(['images/children&elderday1.png', '']);
-            break;
-        case '10-12': // November 12 - Deepavali
-            createFallingImages(['images/diwali1.png', '']);
-            break;
-        case '11-25': // December 25 - Christmas
-            createFallingImages(['images/christmas1.png', 'images/christmas2.png']);
+        case '11-25': // December 25 - Christmas, snowflakes falling
+            createEffect('falling', ['images/snow.png'], 25);
+            createEffect('popup-right', ['images/christmas tree.png'], '200px', '250px');
             break;
         default:
             break;
     }
 }
+
 
 // Call the applySeasonalEffect function to trigger the effect
 applySeasonalEffect();
@@ -162,7 +315,7 @@ function showSpecialDayMessages() {
         if (day === 4) messages.push('Happy Independence Day!');
         if (day === 14) messages.push('Happy Valentine\'s Day💞');
     } else if (month === 2 && day === 11) { // March 11
-        messages.push('Happy Maha Shivarathri!');
+        //messages.push('Happy Maha Shivarathri!');
     } else if (month === 3 && day === 14) { // April 14
         messages.push('Wish you a New Year blessed with love, happiness, and prosperity 🌞🎇🙏🏻');
     } else if (month === 4) { // May
@@ -172,15 +325,15 @@ function showSpecialDayMessages() {
         if (day === 5) messages.push('May This Poson Bring Peace and Happiness 🌕');
         if (now.getDay() === 0 && day > 14 && day < 22) messages.push('Happy Father\'s Day👨‍👧‍👦🩷');
     } else if (month === 6) { // July
-        if (day === 7) messages.push('Happy Friendship Day🍻');
-        //if (day === 1) messages.push('Happy Kataragama!');
-    // } else if (month === 7 && day === 9) { // August 1
+        //if (day === 7) messages.push('Happy Friendship Day🍻');
+    } else if (month === 7 && day === 9) { // August 1
     //     messages.push('Stay happy as always🥰😄👻');
     } else if (month === 8) { // October
         if (day === 1) messages.push('Happy Children Day🥳 & Happy Elders Day🎉👨‍👩‍👧‍👦');
         if (day === 6) messages.push('Happy Teachers Day👩🏻‍🏫👨🏻‍🏫');
+        if (day === 20) messages.push('Happy Deepavali🪔');
     } else if (month === 10 && day === 4) { // November 4
-        messages.push('Happy Deepavali🪔');
+        //messages.push('Happy Deepavali🪔');
     } else if (month === 11 && day === 25) { // December 25
         messages.push('Wishing you Christmas blessings wrapped in love, tied up with joy!☃️❄️');
     }
