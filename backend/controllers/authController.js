@@ -16,7 +16,7 @@ exports.loginUser = (req, res) => {
         req.session.user = username;
 
         // Redirect back to index.html where the modals are handled with JavaScript
-        return res.status(200).json({ success: true, message: "Login successful" });
+        return res.status(200).json({ success: true, message: "Login successful!!!" });
     } else {
         return res.status(401).json({success: false, message: "Invalid credentials. Only admin can log in."});
     }
